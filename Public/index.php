@@ -1,39 +1,44 @@
-<?php
+<form action="veri_ekle.php" method="POST">
+    <label for="entreprise">Entreprise:</label>
+    <select name="entreprise" id="entreprise">
+        <option value="1">AM PRODUCTION</option>
+        <option value="2">ADOMOS</option>
+    </select><br><br>
 
- require '../App//Core/Config/app.php';
- require '../App//Core/Database/database.php';
+    <label for="prestation">Prestation:</label>
+    <select name="prestation" id="prestation">
+        <option value="1">Vitrerire</option>
+        <option value="2">Remise en état mensuelle</option>
+    </select><br><br>
 
-use App\Database\Database;
+    <!-- 12 aya ait saat bilgisi alanları -->
+    <label for="heure_mois_1">Janvier:</label>
+    <input type="text" name="heure_mois_1" id="heure_mois_1" value="0"><br><br>
 
-// Veritabanı bağlantısını yapılandırma parametresiyle oluştur
-$database = new Database($config);
+    <label for="heure_mois_2">Février:</label>
+    <input type="text" name="heure_mois_2" id="heure_mois_2" value="0"><br><br>
 
-// fetchData metodunu çağırarak verileri al
-$data = $database->fetchData();
+    <label for="heure_mois_2">Février:</label>
+    <input type="text" name="heure_mois_3" id="heure_mois_3" value="0"><br><br>
+    <label for="heure_mois_2">Février:</label>
+    <input type="text" name="heure_mois_4" id="heure_mois_4" value="0"><br><br>
+    <label for="heure_mois_2">Février:</label>
+    <input type="text" name="heure_mois_5" id="heure_mois_5" value="0"><br><br>
+    <label for="heure_mois_2">Février:</label>
+    <input type="text" name="heure_mois_6" id="heure_mois_6" value="0"><br><br>
+    <label for="heure_mois_2">Février:</label>
+    <input type="text" name="heure_mois_7" id="heure_mois_7" value="0"><br><br>
+    <label for="heure_mois_2">Février:</label>
+    <input type="text" name="heure_mois_8" id="heure_mois_8" value="0"><br><br>
+    <label for="heure_mois_2">Février:</label>
+    <input type="text" name="heure_mois_9" id="heure_mois_9" value="0"><br><br>
+    <label for="heure_mois_2">Février:</label>
+    <input type="text" name="heure_mois_10" id="heure_mois_10" value="0"><br><br>
+    <label for="heure_mois_2">Février:</label>
+    <input type="text" name="heure_mois_11" id="heure_mois_11" value="0"><br><br>
+    <label for="heure_mois_2">Février:</label>
+    <input type="text" name="heure_mois_12" id="heure_mois_12" value="0"><br><br>
+    <!-- Diğer aylar için aynı yapıda input alanlarını ekleyin -->
 
-// Verileri chantier ID'lerine göre gruplandırma
-$groupedData = [];
-foreach ($data as $row) {
-    $chantierID = $row['chantier_id'];
-    if (!isset($groupedData[$chantierID])) {
-        $groupedData[$chantierID] = [
-            'chantier_id' => $chantierID,
-            'nom_de_chantier' => $row['nom_de_chantier'],
-            'prestations' => [],
-        ];
-    }
-    $groupedData[$chantierID]['prestations'][] = [
-        'prestation' => $row['prestation'],
-        'month' => $row['month'],
-        'hour' => $row['hour'],
-    ];
-}
-
-// Verileri göstermek için örnek bir döngü
-foreach ($groupedData as $chantier) {
-    echo "Chantier ID: " . $chantier['chantier_id'] . ", Chantier: " . $chantier['nom_de_chantier'] . "<br>";
-    foreach ($chantier['prestations'] as $prestation) {
-        echo "Prestation: " . $prestation['prestation'] . ", Month: " . $prestation['month'] . ", Hour: " . $prestation['hour'] . "<br>";
-    }
-    echo "<br>";
-}
+    <input type="submit" value="Veriyi Ekle">
+</form>
