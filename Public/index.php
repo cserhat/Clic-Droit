@@ -1,4 +1,4 @@
-<form action="veri_ekle.php" method="POST">
+<form id="form" action="" method="POST">
     <label for="entreprise">Entreprise:</label>
     <select name="entreprise" id="entreprise">
         <option value="1">AM PRODUCTION</option>
@@ -40,5 +40,32 @@
     <input type="text" name="heure_mois_12" id="heure_mois_12" value="0"><br><br>
     <!-- Diğer aylar için aynı yapıda input alanlarını ekleyin -->
 
-    <input type="submit" value="Veriyi Ekle">
+    <input type="submit" value="Veriyi Ekle" onclick="submitForm(event)">
 </form>
+
+<script>
+function submitForm(event) {
+    event.preventDefault(); // Formun normal submit işlemini engelle
+
+    const formData = new FormData(document.getElementById('form'));
+
+    fetch('../App/Core/Database/form.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.text();
+    })
+    .then(result => {
+        console.log(result); // Yanıtı konsola yazdır
+        // Başka işlemler yapabilirsiniz
+    })
+    .catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+    });
+}
+
+</script>

@@ -1,5 +1,3 @@
-
-
 CREATE TABLE `mois`
 (
     `id` int(12) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
